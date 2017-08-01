@@ -24,6 +24,8 @@ bb.show()
 
 ```
 list_length_udf = udf(lambda x : len(x),IntegerType())
+
+> 验证
 cc = aa.withColumn('length',list_length_udf(col('list_2')).name('length'))
 cc.show()
 ```
@@ -37,6 +39,7 @@ def uniqueList(x):
     return a
 uniqueList_udf = udf(lambda x:uniqueList(x[0]+x[1]),ArrayType(StringType(),containsNull=False))
 
+> 验证
 dd = aa.select(uniqueList_udf(F.array(col('list_1'),col('list_2'))).name('list_3'))
 dd.show()
 ```
