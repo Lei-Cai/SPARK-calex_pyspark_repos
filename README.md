@@ -14,6 +14,7 @@ aa.show()
 diffList = lambda x: [x[0][i] for i in np.where([i not in x[1] for i in x[0]])[0]]
 diffList_udf = udf(diffList,ArrayType(StringType(), containsNull=False))
 
+> 验证
 bb = aa.select(diffList_udf(F.array(col('list_1'),col('list_2'))).name('sss'))
 bb.show()
 ```
